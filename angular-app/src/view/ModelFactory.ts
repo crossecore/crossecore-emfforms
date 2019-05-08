@@ -1,0 +1,31 @@
+import {EFactory} from "ecore/EFactory";
+import {FeaturePathDomainModelReference} from "./FeaturePathDomainModelReference";
+import {ViewModelLoadingProperties} from "./ViewModelLoadingProperties";
+import {Attachment} from "./Attachment";
+import {StringToObjectMapEntry} from "./StringToObjectMapEntry";
+import {Element} from "./Element";
+import {FeatureDomainModelReferenceSegment} from "./FeatureDomainModelReferenceSegment";
+import {ContainedElement} from "./ContainedElement";
+import {DomainModelReference} from "./DomainModelReference";
+import {ContainedContainer} from "./ContainedContainer";
+import {View} from "./View";
+import {Control} from "./Control";
+import {Diagnostic} from "./Diagnostic";
+import {Container} from "./Container";
+import {DateTimeDisplayAttachment} from "./DateTimeDisplayAttachment";
+export interface ModelFactory extends EFactory{
+	createDiagnostic():Diagnostic;
+	createAttachment():Attachment;
+	createDomainModelReference():DomainModelReference;
+	createFeaturePathDomainModelReference():FeaturePathDomainModelReference;
+	createElement():Element;
+	createView():View;
+	createContainedElement():ContainedElement;
+	createContainer():Container;
+	createContainedContainer():ContainedContainer;
+	createControl():Control;
+	createViewModelLoadingProperties():ViewModelLoadingProperties;
+	createStringToObjectMapEntry():StringToObjectMapEntry;
+	createDateTimeDisplayAttachment():DateTimeDisplayAttachment;
+	createFeatureDomainModelReferenceSegment():FeatureDomainModelReferenceSegment;
+}
