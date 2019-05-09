@@ -11,56 +11,22 @@ import {ModelFactoryImpl} from '../view/ModelFactoryImpl';
 
 import {EObject} from 'ecore/EObject';
 import {EClass} from 'ecore/EClass';
+import {EClassImpl} from 'ecore/EClassImpl';
 import {AbstractCollection} from 'ecore/AbstractCollection';
 import {OrderedSet} from '../ecore/OrderedSet';
 import {EReference} from '../ecore/EReference';
 
 import {View} from '../view/View';
+import {ModelPackageImpl} from '../view/ModelPackageImpl';
 
 export interface DialogData {
-  options: OrderedSet<EReference>;
+  options: Array<[EReference, EClass]>;
   selection: EReference;
 }
 
 
-/**
- * Food data with nested structure.
- * Each node has a name and an optiona list of children.
- */
-interface FoodNode {
-  name: string;
-  children?: FoodNode[];
-}
 
 
-
-const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Fruit',
-    children: [
-      {name: 'Apple'},
-      {name: 'Banana'},
-      {name: 'Fruit loops'},
-    ]
-  }, {
-    name: 'Vegetables',
-    children: [
-      {
-        name: 'Green',
-        children: [
-          {name: 'Broccoli'},
-          {name: 'Brussel sprouts'},
-        ]
-      }, {
-        name: 'Orange',
-        children: [
-          {name: 'Pumpkins'},
-          {name: 'Carrots'},
-        ]
-      },
-    ]
-  },
-];
 
 @Component({
   selector: 'app-root',
@@ -72,6 +38,10 @@ export class AppComponent {
   dataSource = new MatTreeNestedDataSource<EObject>();
   view:View;
 
+  selection:EObject;
+
+  xxx = '<mat-toolbar>EMF Forms Model</mat-toolbar>';
+
 
 
   constructor(public dialog: MatDialog) {
@@ -79,6 +49,7 @@ export class AppComponent {
 
 
     this.view = ModelFactoryImpl.eINSTANCE.createView();
+    this.view.name = "View myView";
 
     const control = ModelFactoryImpl.eINSTANCE.createControl()
 
@@ -86,8 +57,17 @@ export class AppComponent {
     this.view.children.add(control);
 
     this.treeControl = new NestedTreeControl<EObject>(this.getChildren);
-    this.dataSource.data = this.view.children;
+    this.dataSource.data = new Array<EObject>();
+    this.dataSource.data.push(this.view);
 
+    this.selection = this.view;
+
+
+  }
+
+  select = (eObject:EObject) => {
+
+    this.selection = eObject;
   }
 
   getChildren = (self:EObject) => {
@@ -98,22 +78,71 @@ export class AppComponent {
     for(const ereference of references){
 
       const child = self.eGet(ereference);
-      result.add(child);
+
+      if(ereference.many){
+        result.addAll(child);
+      }
+      else{
+        result.add(child);
+      }
+
     }
 
     return result;
 
   }
 
-  getContainments = (self:EObject):OrderedSet<EReference> =>{
+  getInstaniableEClasses = (eobject:EObject):Array<[EReference, EClass]> => {
 
-    let result = new OrderedSet<EReference>();
-    for (let ereference of self.eClass().eAllReferences) {
-      if((ereference as EReference).containment){
+    let result = new Array<[EReference, EClass]>();
 
-        result.add((ereference as EReference));
+    let containments = this.getContainments(eobject);
+
+    for(let erference of containments){
+
+      for(let eclassifier of ModelPackageImpl.eINSTANCE.eClassifiers){
+
+        if(eclassifier instanceof EClassImpl){
+
+          let eclass = eclassifier as EClass;
+
+          if(!eclass.abstract){
+            if(eclass.eAllSuperTypes.containsX(erference.eType as EClass)){
+
+              result.push([erference, eclass]);
+            }
+          }
+
+        }
+
       }
     }
+    return result;
+
+
+  }
+
+  getContainments = (x:EObject):OrderedSet<EReference> =>{
+
+    let result = new OrderedSet<EReference>();
+
+    if(x!==null){
+
+      if(x.eClass!==null){
+
+
+        for (let ereference of x.eClass().eAllReferences) {
+          if((ereference as EReference).containment && !(ereference as EReference).transient){
+
+            result.add((ereference as EReference));
+          }
+        }
+      }
+
+
+    }
+
+
 
     return result;
 
@@ -141,7 +170,7 @@ export class AppComponent {
   openDialog = (eObject:EObject): void => {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '66%',
-      data: {options: this.getContainments(eObject)}
+      data: {options: this.getInstaniableEClasses(eObject)}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -149,7 +178,17 @@ export class AppComponent {
     });
   }
 
-  hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
+  hasChild = (_: number, node: EObject) => {
+
+
+    if(node!==null){
+      return this.getChildren(node).size() > 0;
+    }
+    return false;
+
+
+
+  }
 }
 
 

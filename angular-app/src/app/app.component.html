@@ -1,14 +1,13 @@
-<div id="container">
-<div id="left">
+<div id="stage">
+  <div id="tree">
+    <mat-toolbar>EMF Forms Model</mat-toolbar>
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
       <!-- This is the tree node template for leaf nodes -->
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
         <li class="mat-tree-node">
           <!-- use a disabled button to provide padding for tree leaf -->
           <button mat-icon-button disabled></button>
-          {{node.name}}
-          <button mat-icon-button (click)="openDialog(node)"><mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon></button>
-          <button mat-icon-button><mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon></button>
+          {{node}}
         </li>
       </mat-tree-node>
 
@@ -22,8 +21,8 @@
                 {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
               </mat-icon>
             </button>
-            {{node.name}}
-            <button mat-icon-button><mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon></button>
+            <button mat-button (click)="select(node)" [color]="selection===node?'accent':''">{{node.name}}</button>
+            <button mat-icon-button (click)="openDialog(node)"><mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon></button>
             <button mat-icon-button><mat-icon aria-label="Example icon-button with a heart icon">remove</mat-icon></button>
           </div>
           <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
@@ -32,8 +31,29 @@
         </li>
       </mat-nested-tree-node>
     </mat-tree>
-</div>
-<div id="right">
-  preview
+  </div>
+  <div id="properties">
+    <mat-toolbar>Properties</mat-toolbar>
+    {{selection.name}}
+    <div *ngIf="selection===null">Please select an item from the tree.</div>
+    <div *ngFor="let attribute of selection?.eClass()?.eAllAttributes">
+      <mat-form-field *ngIf="attribute.eType.name==='EString'">
+        <input matInput  [placeholder]="attribute.name" [value]="user.eGet(attribute)">
+      </mat-form-field>
+      <mat-form-field *ngIf="attribute.eType.name==='EInt'">
+        <input matInput [placeholder]="attribute.name" [value]="user.eGet(attribute)" type="number">
+      </mat-form-field>
+      <mat-form-field *ngIf="attribute.eType.name==='EDate'">
+        <input matInput [matDatepicker]="picker" [placeholder]="attribute.name" [value]="user.eGet(attribute)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-slide-toggle *ngIf="attribute.eType.name==='EBoolean'" [checked]="user.eGet(attribute)===true">{{attribute.name}}</mat-slide-toggle>
+    </div>
+
+  </div>
+<div id="preview">
+  <mat-toolbar>Render Preview</mat-toolbar>
+  <runtime-content></runtime-content>
 </div>
 </div>
