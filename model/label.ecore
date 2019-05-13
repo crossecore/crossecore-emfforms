@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="label" nsURI="http://org/eclipse/emf/ecp/view/label/model" nsPrefix="org.eclipse.emf.ecp.view.label.model">
+  <eClassifiers xsi:type="ecore:EClass" name="Label" eSuperTypes="./view.ecore#//ContainedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="style" eType="#//VLabelStyle"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="domainModelReference" eType="ecore:EClass ./view.ecore#//DomainModelReference"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="VLabelStyle">
+    <eLiterals name="H0"/>
+    <eLiterals name="H1" value="1" literal="H1"/>
+    <eLiterals name="H2" value="2"/>
+    <eLiterals name="H3" value="3"/>
+    <eLiterals name="H4" value="4"/>
+    <eLiterals name="H5" value="5"/>
+    <eLiterals name="H6" value="6"/>
+    <eLiterals name="H7" value="7"/>
+    <eLiterals name="H8" value="8"/>
+    <eLiterals name="H9" value="9"/>
+    <eLiterals name="Separator" value="10"/>
+  </eClassifiers>
+</ecore:EPackage>
