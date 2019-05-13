@@ -36,21 +36,20 @@
     <mat-toolbar>Properties</mat-toolbar>
     {{selection.name}}
     <div *ngIf="selection===null">Please select an item from the tree.</div>
-    <div *ngFor="let attribute of selection?.eClass()?.eAllAttributes">
+    <form *ngFor="let attribute of selection.eClass().eAllAttributes">
       <mat-form-field *ngIf="attribute.eType.name==='EString'">
-        <input matInput  [placeholder]="attribute.name" [value]="user.eGet(attribute)">
+        <input matInput [placeholder]="attribute.name" [value]="selection.eGet(attribute)" (change)="save($event, attribute)">
       </mat-form-field>
       <mat-form-field *ngIf="attribute.eType.name==='EInt'">
-        <input matInput [placeholder]="attribute.name" [value]="user.eGet(attribute)" type="number">
+        <input matInput [placeholder]="attribute.name" [value]="selection.eGet(attribute)" type="number">
       </mat-form-field>
       <mat-form-field *ngIf="attribute.eType.name==='EDate'">
-        <input matInput [matDatepicker]="picker" [placeholder]="attribute.name" [value]="user.eGet(attribute)">
+        <input matInput [matDatepicker]="picker" [placeholder]="attribute.name" [value]="selection.eGet(attribute)">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-      <mat-slide-toggle *ngIf="attribute.eType.name==='EBoolean'" [checked]="user.eGet(attribute)===true">{{attribute.name}}</mat-slide-toggle>
-    </div>
-
+      <mat-slide-toggle *ngIf="attribute.eType.name==='EBoolean'" [checked]="selection.eGet(attribute)===true">{{attribute.name}}</mat-slide-toggle>
+    </form>
   </div>
 <div id="preview">
   <mat-toolbar>Render Preview</mat-toolbar>

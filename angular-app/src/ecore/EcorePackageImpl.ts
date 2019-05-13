@@ -2103,71 +2103,71 @@ export class EcorePackageImpl extends EPackageImpl implements EcorePackage{
 			
 			
 			
-			//this.initEDataType(this.EBigDecimalEDataType, null, "EBigDecimal", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EBigDecimalEDataType, null, "EBigDecimal", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EBigIntegerEDataType, null, "EBigInteger", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EBigIntegerEDataType, null, "EBigInteger", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EBooleanEDataType, null, "EBoolean", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EBooleanEDataType, null, "EBoolean", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EBooleanObjectEDataType, null, "EBooleanObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EBooleanObjectEDataType, null, "EBooleanObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EByteEDataType, null, "EByte", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EByteEDataType, null, "EByte", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EByteArrayEDataType, null, "EByteArray", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EByteArrayEDataType, null, "EByteArray", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EByteObjectEDataType, null, "EByteObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EByteObjectEDataType, null, "EByteObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.ECharEDataType, null, "EChar", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.ECharEDataType, null, "EChar", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.ECharacterObjectEDataType, null, "ECharacterObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.ECharacterObjectEDataType, null, "ECharacterObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EDateEDataType, null, "EDate", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EDateEDataType, null, "EDate", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EDiagnosticChainEDataType, null, "EDiagnosticChain", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EDiagnosticChainEDataType, null, "EDiagnosticChain", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EDoubleEDataType, null, "EDouble", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EDoubleEDataType, null, "EDouble", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EDoubleObjectEDataType, null, "EDoubleObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EDoubleObjectEDataType, null, "EDoubleObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EEListEDataType, null, "EEList", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EEListEDataType, null, "EEList", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EEnumeratorEDataType, null, "EEnumerator", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EEnumeratorEDataType, null, "EEnumerator", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EFeatureMapEDataType, null, "EFeatureMap", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EFeatureMapEDataType, null, "EFeatureMap", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EFeatureMapEntryEDataType, null, "EFeatureMapEntry", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EFeatureMapEntryEDataType, null, "EFeatureMapEntry", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EFloatEDataType, null, "EFloat", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EFloatEDataType, null, "EFloat", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EFloatObjectEDataType, null, "EFloatObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EFloatObjectEDataType, null, "EFloatObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EIntEDataType, null, "EInt", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EIntEDataType, null, "EInt", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EIntegerObjectEDataType, null, "EIntegerObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EIntegerObjectEDataType, null, "EIntegerObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EJavaClassEDataType, null, "EJavaClass", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EJavaClassEDataType, null, "EJavaClass", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EJavaObjectEDataType, null, "EJavaObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EJavaObjectEDataType, null, "EJavaObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.ELongEDataType, null, "ELong", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.ELongEDataType, null, "ELong", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.ELongObjectEDataType, null, "ELongObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.ELongObjectEDataType, null, "ELongObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EMapEDataType, null, "EMap", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EMapEDataType, null, "EMap", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EResourceEDataType, null, "EResource", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EResourceEDataType, null, "EResource", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EResourceSetEDataType, null, "EResourceSet", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EResourceSetEDataType, null, "EResourceSet", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EShortEDataType, null, "EShort", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EShortEDataType, null, "EShort", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EShortObjectEDataType, null, "EShortObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EShortObjectEDataType, null, "EShortObject", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EStringEDataType, null, "EString", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EStringEDataType, null, "EString", EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.ETreeIteratorEDataType, null, "ETreeIterator", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.ETreeIteratorEDataType, null, "ETreeIterator", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
-			//this.initEDataType(this.EInvocationTargetExceptionEDataType, null, "EInvocationTargetException", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
+			this.initEDataType(this.EInvocationTargetExceptionEDataType, null, "EInvocationTargetException", !EPackageImpl.IS_SERIALIZABLE, !EPackageImpl.IS_GENERATED_INSTANCE_CLASS);
 			
         }
 		

@@ -3,10 +3,12 @@ import {Component} from '@angular/core';
 import {Inject} from '@angular/core';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
 
+
 import {MatDialog} from '@angular/material';
 import {MatDialogRef} from '@angular/material';
 import {MAT_DIALOG_DATA} from '@angular/material';
-import {ModelFactoryImpl} from '../view/ModelFactoryImpl';
+import {ModelFactoryImpl} from '../model/ModelFactoryImpl';
+
 
 
 import {EObject} from 'ecore/EObject';
@@ -16,8 +18,11 @@ import {AbstractCollection} from 'ecore/AbstractCollection';
 import {OrderedSet} from '../ecore/OrderedSet';
 import {EReference} from '../ecore/EReference';
 
-import {View} from '../view/View';
-import {ModelPackageImpl} from '../view/ModelPackageImpl';
+import {View} from '../model/View';
+import {ModelPackageImpl} from '../model/ModelPackageImpl';
+import {LabelPackageImpl} from '../label/LabelPackageImpl';
+import {EAttribute} from '../ecore/EAttribute';
+import {EPackage} from '../ecore/EPackage';
 
 export interface DialogData {
   options: Array<[EReference, EClass]>;
@@ -38,18 +43,21 @@ export class AppComponent {
   dataSource = new MatTreeNestedDataSource<EObject>();
   view:View;
 
-  selection:EObject;
+  selection: EObject = null;
 
-  xxx = '<mat-toolbar>EMF Forms Model</mat-toolbar>';
+
+
+
+
 
 
 
   constructor(public dialog: MatDialog) {
 
 
-
     this.view = ModelFactoryImpl.eINSTANCE.createView();
     this.view.name = "View myView";
+    this.view.visible = true;
 
     const control = ModelFactoryImpl.eINSTANCE.createControl()
 
@@ -65,9 +73,17 @@ export class AppComponent {
 
   }
 
+  save = (event:any, eAttribute:EAttribute) => {
+    this.selection.eSet(eAttribute, event.target.value);
+  }
+
   select = (eObject:EObject) => {
 
     this.selection = eObject;
+
+
+
+
   }
 
   getChildren = (self:EObject) => {
@@ -98,23 +114,32 @@ export class AppComponent {
 
     let containments = this.getContainments(eobject);
 
+    let epackages = new OrderedSet<EPackage>();
+    epackages.add(ModelPackageImpl.eINSTANCE);
+    epackages.add(LabelPackageImpl.eINSTANCE);
+
+
     for(let erference of containments){
 
-      for(let eclassifier of ModelPackageImpl.eINSTANCE.eClassifiers){
+      for(let epackage of epackages){
 
-        if(eclassifier instanceof EClassImpl){
 
-          let eclass = eclassifier as EClass;
+        for(let eclassifier of epackage.eClassifiers){
 
-          if(!eclass.abstract){
-            if(eclass.eAllSuperTypes.containsX(erference.eType as EClass)){
+          if(eclassifier instanceof EClassImpl){
 
-              result.push([erference, eclass]);
+            let eclass = eclassifier as EClass;
+
+            if(!eclass.abstract){
+              if(eclass.eAllSuperTypes.containsX(erference.eType as EClass)){
+
+                result.push([erference, eclass]);
+              }
             }
+
           }
 
         }
-
       }
     }
     return result;
