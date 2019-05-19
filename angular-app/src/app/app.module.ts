@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { DialogOverviewExampleDialog } from './app.component';
+import { EcoreImportDialog } from './app.component';
 import { RuntimeContentComponent } from './runtime-content.component';
 
 import {MatTreeModule} from '@angular/material/tree';
@@ -15,6 +16,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -27,10 +30,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     DialogOverviewExampleDialog,
+    EcoreImportDialog,
     RuntimeContentComponent
   ],
   entryComponents: [
-    DialogOverviewExampleDialog
+    DialogOverviewExampleDialog,
+    EcoreImportDialog
   ],
   imports: [
     BrowserModule,
@@ -44,6 +49,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatDatepickerModule,
     MatGridListModule,
     MatToolbarModule,
+    MatMenuModule,
+    MatSelectModule,
 
     BrowserAnimationsModule
   ],

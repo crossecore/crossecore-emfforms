@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Import Ecore Domain Model</h1>
+<div *ngIf="eclasses.length===0">
+<button mat-raised-button color="primary" (click)="fileInput.click()">Select File</button>
+<input hidden type="file" #fileInput (change)="readFile($event)" placeholder="Select Ecore File" accept=".ecore">
+</div>
+<div>
+<mat-action-list *ngIf="eclasses.length>0">
+  <button *ngFor="let eclass of eclasses" mat-list-item (click)="select(eclass)"> {{eclass.name}} </button>
+</mat-action-list>
+</div>

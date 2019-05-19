@@ -1,13 +1,15 @@
 //source: https://github.com/DenysVuika/ng2-dynamic-content/blob/master/app/runtime-content.component.ts
 
 import {
-  Component,
+  Component, Input,
   ViewChild, ViewContainerRef, ComponentRef,
   Compiler, ComponentFactory, NgModule, ModuleWithComponentFactories, ComponentFactoryResolver
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import {MatToolbarModule} from '@angular/material';
+import {MatInputModule} from '@angular/material/input';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'runtime-content',
@@ -21,7 +23,7 @@ import {MatToolbarModule} from '@angular/material';
 })
 export class RuntimeContentComponent {
 
-  template: string = "<mat-toolbar>EMF Forms Model</mat-toolbar>";
+  @Input() template: string = "<mat-toolbar>EMF Forms Model</mat-toolbar>";
 
   @ViewChild('container', { read: ViewContainerRef })
   container: ViewContainerRef;
@@ -55,7 +57,7 @@ export class RuntimeContentComponent {
     console.log(cmpClass);
 
     @NgModule(
-      { imports: [CommonModule, MatToolbarModule],
+      { imports: [CommonModule, MatToolbarModule, MatSlideToggleModule, MatInputModule],
         declarations: [decoratedCmp] })
     class RuntimeComponentModule { }
 

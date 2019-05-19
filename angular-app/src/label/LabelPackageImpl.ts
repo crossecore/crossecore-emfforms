@@ -130,7 +130,7 @@ export class LabelPackageImpl extends EPackageImpl implements LabelPackage{
 		
 		private VLabelStyleEEnum:EEnum = null;
 		
-		
+
 		public static LABEL:number = 0;
 		public static LABEL_FEATURE_COUNT:number = ModelPackageImpl.CONTAINEDELEMENT_FEATURE_COUNT + 2;
 		public static LABEL_OPERATION_COUNT:number = ModelPackageImpl.CONTAINEDELEMENT_OPERATION_COUNT + 0;

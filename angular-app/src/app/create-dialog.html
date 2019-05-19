@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Create child</h1>
 <div mat-dialog-content>
   <mat-action-list >
-    <button mat-list-item *ngFor="let pair of data.options" (click)="select(pair[1])"> {{pair[0].name}} : {{pair[1].name}}</button>
+    <button mat-list-item *ngFor="let pair of data.options" (click)="select(pair)"> {{pair[0].name}} : {{pair[1].name}}</button>
   </mat-action-list>
 </div>
 <div mat-dialog-actions>

@@ -34,7 +34,7 @@ export class ModelSwitch<T> extends Switch<T> {
 		return ePackage === ModelSwitch.modelPackage;
 	}
 	
-	public doSwitch(classifierID:number, theEObject:EObject):T {
+	protected doSwitch3(classifierID:number, theEObject:EObject):T {
 		switch (classifierID) {
 			case ModelPackageImpl.DIAGNOSTIC: {
 				let obj:Diagnostic = <Diagnostic>theEObject;
