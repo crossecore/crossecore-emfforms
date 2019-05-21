@@ -18,10 +18,11 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
-
+import {MatCardModule} from '@angular/material/card';
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HtmlsourceService} from "./htmlsource.service";
 
 
 
@@ -51,10 +52,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatToolbarModule,
     MatMenuModule,
     MatSelectModule,
+    MatCardModule,
 
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [HtmlsourceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

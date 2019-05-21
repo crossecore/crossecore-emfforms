@@ -9,10 +9,10 @@
           <mat-icon>open_in_browser</mat-icon>
           <span>Import domain model (*.ecore)</span>
         </button>
-        <button (click)="export()" mat-menu-item>
+        <!--<button (click)="export()" mat-menu-item>
           <mat-icon>save_alt</mat-icon>
           <span>Export view model (*.json)</span>
-        </button>
+        </button>-->
 
 
       </mat-menu>
@@ -52,6 +52,7 @@
     </mat-tree>
     -->
 
+    <button *ngIf="dataSource.data.length===0" mat-raised-button color="primary" (click)="openImportDialog()">Import Ecore</button>
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
       <!--
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
@@ -105,6 +106,6 @@
   </div>
 <div id="preview">
   <mat-toolbar>Render Preview</mat-toolbar>
-  <runtime-content [template]="template"></runtime-content>
+  <runtime-content></runtime-content>
 </div>
 </div>

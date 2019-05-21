@@ -40,6 +40,7 @@ import {ModelSwitch} from '../model/ModelSwitch';
 import {Control} from '../model/Control';
 import {FeaturePathDomainModelReference} from '../model/FeaturePathDomainModelReference';
 import {FeaturePathDomainModelReferenceImpl} from '../model/FeaturePathDomainModelReferenceImpl';
+import {HtmlsourceService} from "./htmlsource.service";
 
 
 export interface DialogData {
@@ -66,6 +67,7 @@ export class TodoItemFlatNode {
 export class ChecklistDatabase {
   dataChange = new BehaviorSubject<EObject[]>([]);
 
+
   get data(): EObject[] {
 
     return this.dataChange.value;
@@ -82,24 +84,11 @@ export class ChecklistDatabase {
     LabelPackageImpl.eINSTANCE.eFactoryInstance = LabelFactoryImpl.eINSTANCE;
 
 
-    let view = ModelFactoryImpl.eINSTANCE.createView();
-    view.name = "myView";
-    view.visible = true;
-
-    const control = ModelFactoryImpl.eINSTANCE.createControl();
-
-    control.name = "control";
-
-
-    view.children.add(control);
-
-    // Build the tree nodes from Json object. The result is a list of `TodoItemNode` with nested
-    //     file node as children.
     const data = new Array<EObject>();
-    data.push(view);
 
-    // Notify the change.
     this.dataChange.next(data);
+
+
   }
 
   removeItem(eobject:EObject){
@@ -133,6 +122,8 @@ export class ChecklistDatabase {
     }
 
     this.dataChange.next(this.data);
+
+
 
   }
 
@@ -183,7 +174,7 @@ export class AppComponent {
 
   attributes : Array<EStructuralFeature> = [];
 
-  template : string = "<mat-toolbar>EMF Forms Model</mat-toolbar>";
+  template : string = "";
 
 
 
@@ -198,7 +189,11 @@ export class AppComponent {
 
 
   */
-  constructor(public dialog: MatDialog, private database: ChecklistDatabase) {
+  constructor(
+    public dialog: MatDialog,
+    private database: ChecklistDatabase,
+    private htmlsourceService: HtmlsourceService
+  ) {
 
 
     this.treeFlattener = new MatTreeFlattener(this.transformer, this.getLevel,
@@ -215,18 +210,12 @@ export class AppComponent {
 
       console.log(data);
 
-      this.template = "";
-
-      for(let control of (data[0] as View).children){
-        this.template += new AngularRenderer().doSwitch(control);
-      }
-
-
+      this.refresh();
 
 
     });
 
-    this.select(this.selection);
+    //this.select(this.selection);
 
 
     /*
@@ -264,8 +253,6 @@ export class AppComponent {
   isExpandable = (node: TodoItemFlatNode) => node.expandable;
 
   getChildren = (node: EObject): EObject[] => {
-
-
 
     let result = new Array<EObject>();
 
@@ -308,11 +295,11 @@ export class AppComponent {
 
 
 
-
-
   save = (event:any, eAttribute:EAttribute) => {
     this.selection.eSet(eAttribute, event.target.value);
     this.database.dataChange.next(this.database.data);
+
+    //this.refresh();
 
   }
 
@@ -321,6 +308,8 @@ export class AppComponent {
 
     this.selection.eSet(eAttribute, event.checked);
     this.database.dataChange.next(this.database.data);
+
+    //this.refresh();
   }
 
   select = (eObject:EObject) => {
@@ -343,6 +332,22 @@ export class AppComponent {
 
   }
 
+  refresh = () =>{
+    this.template = "";
+
+    if(this.database.data.length>0){
+      for(let control of (this.database.data[0] as View).children){
+        this.template += new AngularRenderer().doSwitch(control);
+      }
+
+      console.log("refresh");
+      console.log(this.template);
+
+      this.htmlsourceService.source.next(this.template);
+    }
+
+
+  }
 
 
   getChildren2 = (self:EObject) => {
@@ -529,11 +534,16 @@ export class AppComponent {
         view.name = eclass.name;
         view.rootEClass = eclass;
 
+        this.select(view);
+
         for(let feature of eclass.eAllStructuralFeatures){
 
           let control = ModelFactoryImpl.eINSTANCE.createControl();
           control.name = feature.name;
           control.label = control.name;
+          control.visible = true;
+          control.enabled = true;
+          control.readonly = false;
 
           let modelRef = ModelFactoryImpl.eINSTANCE.createFeaturePathDomainModelReference();
           modelRef.domainModelEFeature = feature;
@@ -552,7 +562,9 @@ export class AppComponent {
 
     });
 
+
   }
+
 
 
   /*
@@ -665,6 +677,7 @@ export class EcoreImportDialog {
   }
 
 
+
 }
 
 
@@ -675,9 +688,6 @@ export class AngularRenderer extends ModelSwitch<string>{
     if(control.domainModelReference instanceof FeaturePathDomainModelReferenceImpl){
 
       if(control.visible){
-
-
-
 
         const feature = (control.domainModelReference as FeaturePathDomainModelReferenceImpl).domainModelEFeature;
 
@@ -694,6 +704,11 @@ export class AngularRenderer extends ModelSwitch<string>{
         }
       }
     }
+
+    return '';
   }
 
+
+
 }
+

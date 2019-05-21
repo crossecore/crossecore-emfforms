@@ -3,39 +3,62 @@
 import {
   Component, Input,
   ViewChild, ViewContainerRef, ComponentRef,
-  Compiler, ComponentFactory, NgModule, ModuleWithComponentFactories, ComponentFactoryResolver
+  Compiler, ComponentFactory, NgModule, ModuleWithComponentFactories, ComponentFactoryResolver, OnInit
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import {MatToolbarModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {HtmlsourceService} from "./htmlsource.service";
 
 @Component({
   selector: 'runtime-content',
   template: `
-        <div>
-            <button (click)="compileTemplate()">Compile</button>
-            <h3>Output</h3>
-            <div #container></div>
-        </div>
+    <div>
+      <div #container></div>
+    </div>
     `
 })
-export class RuntimeContentComponent {
+export class RuntimeContentComponent implements OnInit{
 
-  @Input() template: string = "<mat-toolbar>EMF Forms Model</mat-toolbar>";
+
 
   @ViewChild('container', { read: ViewContainerRef })
   container: ViewContainerRef;
 
+  template : string = "";
+
   private componentRef: ComponentRef<{}>;
+
+
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    private compiler: Compiler) {
+    private compiler: Compiler,
+    private htmlsourceService: HtmlsourceService
+  ) {
+
+
+
+
+  }
+
+  ngOnInit(){
+    this.htmlsourceService.source.subscribe(value =>{
+
+
+
+      console.log("receive 2");
+      console.log(value);
+      this.template = value;
+      this.compileTemplate();
+    })
   }
 
   compileTemplate() {
+
+
 
     let metadata = {
       selector: `runtime-component-sample`,
@@ -54,7 +77,7 @@ export class RuntimeContentComponent {
   private createComponentFactorySync(compiler: Compiler, metadata: Component, componentClass: any): ComponentFactory<any> {
     const cmpClass = componentClass || class RuntimeComponent { name: string = 'Denys' };
     const decoratedCmp = Component(metadata)(cmpClass);
-    console.log(cmpClass);
+    console.log(metadata);
 
     @NgModule(
       { imports: [CommonModule, MatToolbarModule, MatSlideToggleModule, MatInputModule],
