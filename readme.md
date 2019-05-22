@@ -23,7 +23,7 @@ The entire editor is written 100% in TypeScript.
     * Currently supported domain model EAttributes: EString, EInt, EBoolean
     * Currently supported view model EAttributes: visible, enabled, label
 
-![Screenshot](https://github.com/crossecore/crossecore-emfforms/tree/master/docs/screenshot.PNG)
+![Screenshot](https://raw.githubusercontent.com/crossecore/crossecore-emfforms/master/docs/screenshot.PNG)
 
 ## Implementation
 
